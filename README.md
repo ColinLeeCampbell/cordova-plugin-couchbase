@@ -10,7 +10,7 @@ Available functionality:
 
 * Create or open a pre-existing local couchbase databases.
 * Insert a JSONObject document into a local couchbase database.
-* Modify a prexisting document stored in a local couchbase database.
+* Modify a pre-existing document stored in a local couchbase database.
 * Perform a `Select *` document query that returns a list of JSONObject documents.
 * Upload all documents from a local couchbase database to a remote couchbase database through a php script.
 
@@ -93,8 +93,7 @@ Examples:
                      "Species" : "Human",
                      "Trade" : "Blade Runner"
                    };
-                  
-                  
+                                    
     // insert the document into the database
     couchbase.insertDocument(
         dbName,
@@ -148,7 +147,7 @@ Use function `couchbase.uploadDocuments` to retrieve all documents from a local 
 
     couchbase.uploadDocuments(url, dbName, success, error)
 
-Uploads all documents from a local database to a url hosting a php script. The php script proceeds to upload all the recieved documents into the remote couchbase server. Upon successful upload, all of the documents will then be purged from the local couchbase database on the mobile device. This function reports all successes and errors to the supplied callback functions.
+Uploads all documents from a local database to a url hosting a php script. The php script proceeds to upload all the recieved documents into the remote couchbase server. Upon successful upload, all of the documents will be purged from the local couchbase database on the mobile device. This function reports all successes and errors to the supplied callback functions.
 
 Parameters:
     
