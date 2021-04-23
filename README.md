@@ -37,12 +37,11 @@ Use function `couchbase.createNewDatabase` to create a new local database:
 
     couchbase.createNewDatabase(dbName ,success, error)
 
-Creates a new local couchbase database using the provided database name. If the provided the database name happens to correspond to a pre-existing local database, a new database will not be created but
-instead the pre-existing database will be opened.
+Creates a new local couchbase database using the provided database name. If the provided the database name happens to correspond to a pre-existing local database, a new database will not be created but instead the pre-existing database will be opened. This function reports all successes and errors to the supplied callback functions.
 
 Parameters:
     
-    @param {String} dbName - the name of the database you'd like to create.
+    @param {String} dbName - The name of the database you'd like to create.
     @param {successCallback} success - Success callback, called upon successful creation/opening of a database.
     @param {failCallback} error - Error callback.
    
@@ -72,11 +71,11 @@ Use function `couchbase.insertDocument` to insert a document into a local databa
 
     couchbase.insertDocument(dbName, document, success, error)
 
-Inserts a JSONObject document into a local couchbase database. 
+Inserts a JSONObject document into a local couchbase database. This function reports all successes and errors to the supplied callback functions.
 
 Parameters:
 
-    @param {String} dbName - the name of the database you're inserting the document to.
+    @param {String} dbName - The name of the database you're inserting the document to.
     @param {JSONObject} document - JSON Object document you're like to store in the database.
     @param {successCallback} success - Success callback, called upon successful insertion of the document.
     @param {failCallback} error - Error callback.
@@ -89,10 +88,10 @@ Examples:
     
     // json object document
     var document = {
-                     "First Name" : "Frodo",
-                     "Last Name" : "Baggins",
-                     "Species" : "Hobbit",
-                     "Trade" : "Ring-bearer"
+                     "First Name" : "Rick",
+                     "Last Name" : "Deckard",
+                     "Species" : "Human",
+                     "Trade" : "Blade Runner"
                    };
                   
                   
@@ -102,11 +101,82 @@ Examples:
         document,
         function(successCode)
         {
-            console.log('message sent to wearable: ' + successCode);
+            console.log('document insert success: ' + successCode);
         },
         function(errorCode)
         {
-            console.log('message sent error: ' + errorCode);
+            console.log('document insert error: ' + errorCode);
+        }
+    );
+
+### Get All Documents
+
+Use function `couchbase.getAllDocuments` to retrieve all documents from a local database:
+
+    couchbase.getAllDocuments(dbName, success, error)
+
+Retrieves all documents from a local database. This function reports a list of JSONObject documents and errors to the supplied callback functions.
+
+Parameters:
+
+    @param {String} dbName - The name of the database you're retrieving the documents from.
+    @param {successCallback} success - Success callback, returns a list of documents from the database.
+    @param {failCallback} error - Error callback.
+   
+
+Examples:
+    
+    // database name
+    var dbName = "Fictional Characters";
+                  
+    // retrieve all the documents in the database
+    couchbase.getAllDocuments(
+        dbName,
+        function(documents)
+        {
+            console.log('documents retrieved: ' + documents.length);
+        },
+        function(errorCode)
+        {
+            console.log('document retrieval error: ' + errorCode);
+        }
+    );
+
+### Upload All Documents
+
+Use function `couchbase.uploadDocuments` to retrieve all documents from a local database:
+
+    couchbase.uploadDocuments(url, dbName, success, error)
+
+Uploads all documents from a local database to a url hosting a php script. The php script proceeds to upload all the recieved documents into the remote couchbase server. Upon successful upload, all of the documents will then be purged from the local couchbase database on the mobile device. This function reports all successes and errors to the supplied callback functions.
+
+Parameters:
+    
+    @param {URL} url - The url hosting the php script for the remote couchbase database.
+    @param {String} dbName - The name of the database you're uploading the documents from.
+    @param {successCallback} success - Success callback, called when documents are uploaded successfully.
+    @param {failCallback} error - Error callback.
+   
+
+Examples:
+
+    // url hosting the php script
+    var url = "http://localhost:8080/uploadcouch.php";
+    
+    // database name
+    var dbName = "Fictional Characters";
+                  
+    // upload all the documents in the database
+    couchbase.uploadDocuments(
+        url,
+        dbName,
+        function(successCode)
+        {
+            console.log('documents upload success: ' + successCode);
+        },
+        function(errorCode)
+        {
+            console.log('documents upload error: ' + errorCode);
         }
     );
 
