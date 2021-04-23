@@ -143,7 +143,7 @@ Examples:
 
 ### Upload All Documents
 
-Use function `couchbase.uploadDocuments` to retrieve all documents from a local database:
+Use function `couchbase.uploadDocuments` to upload all documents from a local database:
 
     couchbase.uploadDocuments(url, dbName, success, error)
 
