@@ -12,7 +12,7 @@ module.exports = {
         cordova.exec(success, error, 'Couchbase', 'query', [arg0]);
     },
    uploadDocuments: function (arg0, success, error) {
-        cordova.exec(success, error, 'Couchbase', 'uploadDocuments', [arg0]);
+        cordova.exec(success, error, 'Couchbase', 'uploadDocument', [arg0]);
    }
 
 };
