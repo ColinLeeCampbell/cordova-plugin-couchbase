@@ -196,9 +196,11 @@ public class Couchbase extends CordovaPlugin {
     }
 
     /**
-     * Helper Function: updateDocument
+     * Function: updateDocument
      *
-     * @param {String} dbName - The name of the database you'd like to know the size of.
+     * @param {String} dbName - The name of the database containing the document you're updating.
+     * @param {String} documentID - The couchbase document ID of the document you're updating.
+     * @param {JSONObject} udates - a JSONObject containing the updates you're making to the document
      * @param {successCallback} success - Success callback, called upon successful creation/opening of a database.
      * @param {failCallback} error - Error callback.
      *
